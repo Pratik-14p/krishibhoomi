@@ -356,12 +356,6 @@ async function cropRoute(req: Request, res: Response) {
       reportMetadata = {};
     }
 
-    const reportSoilType = String(
-      reportMetadata.soilType ||
-      reportMetadata.soilTexture ||
-      
-    ).trim();
-
     // Prefer the verified report's texture over an unrelated UI default.
    
 const reportSoilType = String(
