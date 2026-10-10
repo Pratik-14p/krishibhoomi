@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #37474F;
+    background-color: #F7FBF7;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+}
+
+/* Custom sleek scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F8E9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C8E6C9;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A5D6A7;
+}
+
+
+/* Responsive safety: prevent charts, tables, cards and long farmer text from
+   forcing horizontal page overflow on phones and tablets. */
+html, body, #root { max-width: 100%; overflow-x: hidden; }
+*, *::before, *::after { box-sizing: border-box; }
+img, svg, video, canvas { max-width: 100%; }
+button, input, select, textarea { max-width: 100%; }
+@media (max-width: 1023px) {
+  .recharts-responsive-container { min-width: 0 !important; }
+}
+
+/* Farmer-friendly responsive safety: never let wide recommendation cards force horizontal page scrolling. */
+html, body, #root { max-width: 100%; overflow-x: hidden; }
+img, svg, canvas, video { max-width: 100%; }
+button, input, select, textarea { max-width: 100%; }
+
+
+/* Light visual crop experience */
+.crop-light-surface {
+  background: linear-gradient(135deg, #ffffff 0%, #f7fcf6 52%, #eef8ee 100%);
+}
+
+@keyframes crop-soft-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.crop-soft-float { animation: crop-soft-float 5s ease-in-out infinite; }
+
+/* Light cinematic interaction layer inspired by modern immersive launch pages. */
+@keyframes floatCard {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -8px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
