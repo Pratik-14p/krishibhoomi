@@ -394,37 +394,41 @@ const soilTypeSource = reportSoilType
   : "farmer-provided-not-verified-in-report";
 
 
-    const input = {
-      soilReportId: soil.soilReportId,
-measurements: {
-  nitrogen: soil.nitrogen,
-  phosphorus: soil.phosphorus,
-  potassium: soil.potassium,
-  ph: soil.ph,
-  organicCarbon: soil.organicCarbon,
-  sulphur: soil.sulphur,
-  zinc: soil.zinc,
-  iron: soil.iron,
-  manganese: soil.manganese,
-  copper: soil.copper,
-  boron: soil.boron,
-  electricalConductivity: soil.electricalConductivity,
-},
-soilType,
-soilTypeSource,
+  
+const input = {
+  soilReportId: soil.soilReportId,
 
-      season,
-      location: location || "Not provided",
-      irrigationAvailability:
-        irrigationAvailability || "Not provided",
-      previousCrop: previousCrop || "Not provided",
-      sowingMonth: sowingMonth || "Not provided",
-      farmArea:
-        Number.isFinite(Number(b.farmArea)) &&
-        Number(b.farmArea) > 0
-          ? Number(b.farmArea)
-          : null,
-    };
+  measurements: {
+    nitrogen: soil.nitrogen,
+    phosphorus: soil.phosphorus,
+    potassium: soil.potassium,
+    ph: soil.ph,
+    organicCarbon: soil.organicCarbon,
+    sulphur: soil.sulphur,
+    zinc: soil.zinc,
+    iron: soil.iron,
+    manganese: soil.manganese,
+    copper: soil.copper,
+    boron: soil.boron,
+    electricalConductivity: soil.electricalConductivity,
+  },
+
+  soilType,
+  soilTypeSource,
+
+  season: b.season || "Not provided",
+  location: location || "Not provided",
+  irrigationAvailability:
+    b.irrigationAvailability || "Not provided",
+  previousCrop: b.previousCrop || "Not provided",
+  sowingMonth: b.sowingMonth || "Not provided",
+
+  farmArea:
+    Number.isFinite(Number(b.farmArea)) &&
+    Number(b.farmArea) > 0
+      ? Number(b.farmArea)
+      : null,
+};
 
     const prompt = `
 Recommend Indian crops for the supplied farm conditions.
