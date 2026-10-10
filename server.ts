@@ -4,7 +4,6 @@ import { fileURLToPath } from 'node:url';
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import mysql from 'mysql2/promise';
-import type { Pool } from "mysql2/typings/mysql/lib/Pool";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { GoogleGenAI } from '@google/genai';
@@ -33,9 +32,9 @@ app.use(cors({ origin: ['http://localhost:3000', 'http://127.0.0.1:3000'], crede
 app.use(express.json({ limit: '15mb' }));
 app.use(express.urlencoded({ extended: true, limit: '15mb' }));
 
-let pool: Pool | null = null;
+let pool: ReturnType<typeof mysql.createPool> | null = null;
 
-function db(): Pool | null {
+function db(): ReturnType<typeof mysql.createPool> | null {
   if (pool) return pool;
   const host = envValue('AIVEN_MYSQL_HOST', 'MYSQL_HOST', 'DB_HOST');
   const user = envValue('AIVEN_MYSQL_USER', 'MYSQL_USER', 'DB_USER');
