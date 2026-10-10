@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import mysql from 'mysql2/promise';
-import type { Pool } from 'mysql2/promise';
+import type { Pool } from "mysql2/typings/mysql/lib/Pool";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { GoogleGenAI } from '@google/genai';
